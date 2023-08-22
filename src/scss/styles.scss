@@ -21,10 +21,12 @@ $trans: all 0.3s ease 0s;
 @import './modules/mixins';
 @import './modules/ready_classes';
 @import './modules/ui'; 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body{
-   font-family: 'Poppins', sans-serif;
+   //font-family: 'Poppins', sans-serif;
+   font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper{
@@ -45,6 +47,7 @@ body{
    color: white;
    position: fixed;
    width: 100%;
+   z-index: 5;
 
    &::before{
       content: '';
@@ -111,6 +114,17 @@ body{
    }
    // .menu__item
    &__item {
+      @media(hover: hover){
+         position: relative;
+
+         &:hover{
+            &>.menu__sub-list{
+               visibility: visible;
+               opacity: 1;
+               pointer-events: all;
+            }
+         }
+      }
    }
    // .menu__link
    &__link {
@@ -120,17 +134,49 @@ body{
          @include adaptValue('font-size', 30, 22, 0, 0);
       }
 
+      @include adaptValue('padding-top', 10, 10, 0, 0);
+      @include adaptValue('padding-bottom', 10, 10, 0, 0);
+
       color: white;
    }
    // .menu__sub-list
    &__sub-list {
-      display: none;
+      //display: none;
+      @media(hover: hover){
+         position: absolute;
+         @include adaptValue('padding', 10, 5, 0, 0);
+         background: white;
+         //font-weight: 500;
+         box-shadow: 0 0 10px 0 $black;
+         border-radius: 5px;
+         color: $purple;
+         top: 100%;
+         left: 0;
+         width: 150px;
+
+         visibility: hidden;
+         opacity: 0;
+         //pointer-events: none;
+         transition: $trans;
+
+
+
+         &>*:not(:last-child){
+            @include adaptValue('margin-bottom', 5, 5, 0, 0);
+         }
+      }
    }
    // .menu__sub-item
    &__sub-item {
    }
    // .menu__sub-link
    &__sub-link {
+      @media(hover: hover){
+         @include adaptValue('font-size', 16, 14, 0, 0);
+         line-height: 1.2;
+         cursor: pointer;
+         font-weight: 500;
+      }
    }
    // .menu__burger
    &__burger {
