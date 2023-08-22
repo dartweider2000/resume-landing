@@ -1,0 +1,38 @@
+//===========================================================================================================
+
+//$propertyName - название свойства (font-size), $startValue, $endValue - начальное и конечное значения этого свойства (30, 15) без пикселей!!! 
+//$canvas - есть ли ограничивающий контейнер, $important - нужно ли пометить как !important(для swiper)
+@mixin adaptValue($propertyName, $startValue, $endValue, $canvas, $important) {
+   @if $canvas == 1{
+      @if $important == 1{
+         #{$propertyName}: getVal($startValue, $endValue) !important;
+      }@else{
+         #{$propertyName}: getVal($startValue, $endValue);
+      }
+   }@else{
+      @if $important == 1{
+         @media(max-width: $mw1){
+            #{$propertyName}: getVal($startValue, $endValue) !important;
+         }
+         @media(min-width: $mw1){
+            #{$propertyName}: $startValue + #{px} !important;
+         }
+      }@else{
+         @media(max-width: $mw1){
+            #{$propertyName}: getVal($startValue, $endValue);
+         }
+         @media(min-width: $mw1){
+            #{$propertyName}: $startValue + #{px};
+         }
+      }
+   }
+}
+
+//===========================================================================================================
+
+//$startValue, $endValue - начальное и конечное значения этого свойства (30, 15) без пикселей!!! 
+@function getVal($startValue, $endValue){
+   @return calc(#{$endValue + px} + (100vw - #{$minWidth + px}) / ((#{$baseWidth} - #{$minWidth}) / (#{$startValue} - #{$endValue})));
+}
+
+//===========================================================================================================

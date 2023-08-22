@@ -1,0 +1,28 @@
+@import "./figurs";
+@import "./js_modules_classes/spoiler_classes";
+@import "./js_modules_classes/_burger_classes";
+@import "./js_modules_classes/popup_classes";
+@import "./js_modules_classes/_tab_classes";
+//===========================================================================================================
+
+.img{
+   position: relative;
+
+   &>img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+   }
+}
+
+//===========================================================================================================
+
+._hidden{
+   display: none !important;
+}
+
+//===========================================================================================================

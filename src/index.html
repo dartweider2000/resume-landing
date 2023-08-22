@@ -12,8 +12,8 @@
             <div class="header__row">
                <a href="/" class="header__logo">Nekit</a>
                <div class="header__menu menu">
-                  <div class="menu__body">
-                     <ul class="menu__list">
+                  <div data-burger-menu-body class="menu__body">
+                     <ul data-spoilers="max, 767" class="menu__list">
                         <li class="menu__item">
                            <a href="#" class="menu__link">Приветствие</a>
                         </li>
@@ -21,8 +21,8 @@
                            <a href="#" class="menu__link">Кто я</a>
                         </li>
                         <li class="menu__item">
-                           <a href="#" class="menu__link">HTML & CSS</a>
-                           <ul class="menu__sub-list">
+                           <a href="#" data-spoiler-title  class="menu__link">HTML & CSS</a>
+                           <ul data-spoiler-body class="menu__sub-list">
                               <li class="menu__sub-item">
                                  <div class="menu__sub-link">Funiro Landing</div>
                               </li>
@@ -41,8 +41,8 @@
                            </ul>
                         </li>
                         <li class="menu__item">
-                           <a href="#" class="menu__link">JavaScript</a>
-                           <ul class="menu__sub-list">
+                           <a href="#" data-spoiler-title class="menu__link">JavaScript</a>
+                           <ul data-spoiler-body class="menu__sub-list">
                               <li class="menu__sub-item">
                                  <div class="menu__sub-link">Змейка</div>
                               </li>
@@ -59,10 +59,8 @@
                         </li>
                      </ul>
                   </div>
-                  <button class="menu__burger burger">
-                     <div class="burger__icon">
-                        <div class="span"></div>
-                     </div>
+                  <button data-burger="max, 767" class="menu__burger burger">
+                     <span></span>
                   </button>
                </div>
             </div>
