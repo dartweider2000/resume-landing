@@ -7,7 +7,7 @@ $mw2: 992px;
 $mw3: 767px;
 
 $red: #912105;
-$black: rgba(0, 0, 0, 0.9);
+$black: rgba(0, 0, 0, 0.95);
 $brown: #794f45;
 $green: #7a956b;
 $violet: #77608d;
@@ -41,11 +41,10 @@ body{
 }
 
 .header {
-   //background: $brown;
    color: white;
    position: fixed;
    width: 100%;
-   z-index: 5;
+   z-index: 5000;
 
    &::before{
       content: '';
@@ -311,10 +310,12 @@ body{
       &>*:not(:last-child){
          @include adaptValue('margin-bottom', 20, 10, 0, 0);
       }
+
+      //@include adaptValue('padding-bottom', 70, 50, 0, 0);
    }
    // .full-screen__title
    &__title {
-      @include adaptValue('font-size', 50, 30, 0, 0);
+      @include adaptValue('font-size', 50, 35, 0, 0);
       font-weight: 700;
       line-height: 1.2;
       color: white;
@@ -327,6 +328,27 @@ body{
    }
    // .full-screen__arrow
    &__arrow {
+      position: absolute;
+      color: white;
+      font-size: 50px;
+     // @include adaptValue('bottom', -70, -50, 0, 0);
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 10;
+      background: transparent;
+      animation-name: arrow-move;
+      animation-duration: 0.7s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-direction: alternate;
    }
 }
 
+@keyframes arrow-move{
+   0%{   
+      bottom: getVal(-60, -40);
+   }
+   100%{
+      bottom: getVal(-80, -60);
+   }
+}
