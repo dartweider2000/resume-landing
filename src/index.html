@@ -164,7 +164,7 @@
             </div>
          </div>
       </div>
-      <div class="present present_funiro present_l">
+      <!-- <div class="present present_funiro present_l">
          <div class="container">
             <div class="present__row">
                <h2 class="present__title title">Funiro</h2>
@@ -308,13 +308,14 @@
                </div>
             </div>
          </div>         
-      </div>
+      </div> -->
       <div class="weather">
          <div class="container">
             <div class="weather__row">
-               <div class="weater__input">
+               <div class="weather__title title">OpenWeather API</div>
+               <div class="weather__input">
                   <div class="weather__description">
-                     <p>Ну чтож, потренеруемся делать запросы к стороннему API. Возьмём для примера OpenWeather API. С помощью данного select, вы можете выбрать город, в которомхотите узнать погоду. Как выбрали, нажмите кнопку Send и данные о погоде высветятся правее.</p>
+                     <p>Ну чтож, потренеруемся делать запросы к стороннему API. Возьмём для примера OpenWeather API. С помощью данного select, вы можете выбрать город, в котором хотите узнать погоду. Как выбрали, нажмите кнопку Send и данные о погоде высветятся правее.</p>
                   </div>
                   <form action="" name="form" class="weather__form form">
                      <select name="select"  class="form__select">
@@ -325,7 +326,10 @@
                         <option value="washington" class="form__iption">Вашингтон</option>
                      </select>
                      <div class="custorm-select">
-                        <div data-value="ivanovo" class="custorm-select__line">Иваново</div>
+                        <div data-value="ivanovo" class="custorm-select__line">
+                           <span>Иваново</span>
+                           <i class='custorm-select__arrow bx bx-chevron-down'></i>
+                        </div>
                         <div class="custorm-select__body">
                            <div data-value="ivanovo" class="custorm-select__option">Иваново</div>
                            <div data-value="moscow" class="custorm-select__option">Москва</div>
@@ -339,23 +343,23 @@
                </div>
                <div class="weather__output">
                   <div class="weather__block weather__block_name">
-                     <div class="weather__title">Название:</div>
+                     <div class="weather__header">Город</div>
                      <div class="weather__data">Иваново</div>
                   </div>
-                  <div class="weather__block weather__block_">
-                     <div class="weather__title">Описание:</div>
+                  <div class="weather__block weather__block_description">
+                     <div class="weather__header">Описание</div>
                      <div class="weather__data">Ясно</div>
                   </div>
                   <div class="weather__block weather__block_temp">
-                     <div class="weather__title">Температура</div>
+                     <div class="weather__header">Температура</div>
                      <div class="weather__data">25 градусов</div>
                   </div>
                   <div class="weather__block weather__block_humidity">
-                     <div class="weather__title">Влажность:</div>
+                     <div class="weather__header">Влажность</div>
                      <div class="weather__data">30 %</div>
                   </div>
                   <div class="weather__block weather__block_wind">
-                     <div class="weather__title">Скорость ветра:</div>
+                     <div class="weather__header">Скорость ветра</div>
                      <div class="weather__data">10 м/с</div>
                   </div>
                </div>
