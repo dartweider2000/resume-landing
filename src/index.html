@@ -309,6 +309,59 @@
             </div>
          </div>         
       </div>
+      <div class="weather">
+         <div class="container">
+            <div class="weather__row">
+               <div class="weater__input">
+                  <div class="weather__description">
+                     <p>Ну чтож, потренеруемся делать запросы к стороннему API. Возьмём для примера OpenWeather API. С помощью данного select, вы можете выбрать город, в которомхотите узнать погоду. Как выбрали, нажмите кнопку Send и данные о погоде высветятся правее.</p>
+                  </div>
+                  <form action="" name="form" class="weather__form form">
+                     <select name="select"  class="form__select">
+                        <option value="ivanovo" class="form__iption">Иваново</option>
+                        <option value="moscow" class="form__iption">Москва</option>
+                        <option value="london" class="form__iption">Лондон</option>
+                        <option value="paris" class="form__iption">Париж</option>
+                        <option value="washington" class="form__iption">Вашингтон</option>
+                     </select>
+                     <div class="custorm-select">
+                        <div data-value="ivanovo" class="custorm-select__line">Иваново</div>
+                        <div class="custorm-select__body">
+                           <div data-value="ivanovo" class="custorm-select__option">Иваново</div>
+                           <div data-value="moscow" class="custorm-select__option">Москва</div>
+                           <div data-value="london" class="custorm-select__option">Лондон</div>
+                           <div data-value="paris" class="custorm-select__option">Париж</div>
+                           <div data-value="washington" class="custorm-select__option">Вашингтон</div>
+                        </div>
+                     </div>
+                     <input type="submit" name="submit" class="form__submit" value="Send">
+                  </form>
+               </div>
+               <div class="weather__output">
+                  <div class="weather__block weather__block_name">
+                     <div class="weather__title">Название:</div>
+                     <div class="weather__data">Иваново</div>
+                  </div>
+                  <div class="weather__block weather__block_">
+                     <div class="weather__title">Описание:</div>
+                     <div class="weather__data">Ясно</div>
+                  </div>
+                  <div class="weather__block weather__block_temp">
+                     <div class="weather__title">Температура</div>
+                     <div class="weather__data">25 градусов</div>
+                  </div>
+                  <div class="weather__block weather__block_humidity">
+                     <div class="weather__title">Влажность:</div>
+                     <div class="weather__data">30 %</div>
+                  </div>
+                  <div class="weather__block weather__block_wind">
+                     <div class="weather__title">Скорость ветра:</div>
+                     <div class="weather__data">10 м/с</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </body>
 </html>
