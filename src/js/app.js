@@ -62,22 +62,85 @@ const init = () => {
       }
       changeStart = changeDirectionElement.offsetTop;
    };
-   // const windowHeaderLittleBigResizeHandler = () => {
-   //    changeStart = changeDirectionElement.offsetTop;
-   //    if(window.innerWidth < 768){
-   //       header.classList.remove('little-big');
-   //    }else{
-   //       if(pageYOffset + header.offsetHeight >= changeStart){
-   //          header.classList.add('little-big');
-   //       }
-   //    }
-   // };
-   // windowHeaderLittleBigResizeHandler();
-   // window.addEventListener('resize', () => {
-   //    setTimeout(() => windowHeaderLittleBigResizeHandler, 300);
-
-   // });
    window.addEventListener('scroll', windowScrollHandler);
 };
 
 init();
+
+initSelect();
+
+function initSelect(){
+   if(!document.querySelector('.form__select'))
+      return;
+
+   const select = document.querySelector('.form__select');
+   select.hidden = true;
+
+   const options =[...select.options];
+   console.log(options);
+
+   const {optionList, selected} = options.reduce((result, option) => {
+      const data = {
+         'value': option.value,
+         'text': option.textContent
+      };
+
+      result.optionList.push(data);
+
+      if(option.selected)
+         result.selected = data;
+
+      return result;
+   }, {'optionList': [], 'selected': {}});
+
+   const bodyHTML = optionList.map(option => getOptionHTML(option));
+   const customSelectHTML = getCustomSelectHTML(selected, bodyHTML);
+   select.parentElement.insertAdjacentHTML('afterbegin', customSelectHTML);
+
+   const customSelect = select.parentElement.firstElementChild;
+
+   customSelect.addEventListener('click', e => {
+      const el = e.target;
+
+      if(el.closest('.custorm-select__line')){
+
+         customSelect.classList.toggle('_active');
+      }
+
+      if(el.closest('.custorm-select__option')){
+
+         const option = el.closest('.custorm-select__option');
+
+         const value = option.dataset.value;
+         const text = option.textContent;
+
+         const line = customSelect.firstElementChild;
+         line.dataset.value = value;
+         line.querySelector('span').textContent = text;
+
+         customSelect.classList.toggle('_active');
+      }
+   });
+}
+
+function getCustomSelectHTML(selected, bodyHTML){
+   return `<div class="custorm-select">
+      <div data-value="${selected.value}" class="custorm-select__line">
+         <span>${selected.text}</span>
+         <i class='custorm-select__arrow bx bx-chevron-down'></i>
+      </div>
+      <div class="custorm-select__body">${bodyHTML.join('')}</div>
+   </div>`;
+}
+
+function getOptionHTML(option){
+   return `<div data-value="${option.value}" class="custorm-select__option">${option.text}</div>`;
+}
+
+document.addEventListener('click', e => {
+   const el = e.target;
+
+   if(document.querySelector('.custorm-select._active') && !el.closest('.custorm-select._active')){
+      document.querySelector('.custorm-select._active').classList.remove('_active');
+   }
+});

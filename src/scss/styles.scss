@@ -838,7 +838,7 @@ body{
    }
    // .form__select
    &__select {
-      display: none;
+      //display: none;
    }
    // .form__iption
    &__iption {
@@ -868,14 +868,15 @@ body{
    }
 }
 .custorm-select {
+   position: relative;
    // .custorm-select__line
    &__line {
       background: white;
       padding: 10px 50px 10px 10px;
       border-radius: 5px;
       color: #1F2233;
-      font-size: 20px;
-      font-weight: 500;
+      font-size: 22px;
+      font-weight: 600;
       position: relative;
       cursor: pointer;
    }
@@ -894,11 +895,45 @@ body{
    }
    // .custorm-select__body
    &__body {
-      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px;
+      background: white;
+      color: #1F2233;
+      font-weight: 600;
+      @include adaptValue('font-size', 18, 16, 0, 0);
+      width: 100%;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      &>*:not(:last-child){
+         @include adaptValue('margin-bottom', 10, 5, 0, 0);
+      }
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: $trans;
+
+      ._active &{
+         opacity: 1;
+         visibility: visible;
+         pointer-events: all;
+      }
    }
    // .custorm-select__option
    &__option {
       cursor: pointer;
+      padding: 5px;
+      border-radius: 5px;
+
+      @media(hover: hover){
+         transition: $trans;
+         &:hover{
+            color: white;
+            background: #77608d;
+         }
+      }
    }
 }
 
