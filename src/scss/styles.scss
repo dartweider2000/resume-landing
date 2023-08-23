@@ -21,11 +21,9 @@ $trans: all 0.3s ease 0s;
 @import './modules/mixins';
 @import './modules/ready_classes';
 @import './modules/ui'; 
-//@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body{
-   //font-family: 'Poppins', sans-serif;
    font-family: 'Montserrat', sans-serif;
 }
 
@@ -92,7 +90,6 @@ body{
    }
    // .menu__list
    &__list {
-      //@include adaptValue('gap', 20, 10, 0, 0);
       position: relative;
       z-index: 1;
 
@@ -105,23 +102,52 @@ body{
 
       @media(max-width: 767px){
          @include adaptValue('padding', 20, 10, 0, 0);
-         @include adaptValue('padding-top', 90, 60, 0, 0);
+         @include adaptValue('padding-top', 90, 45, 0, 0);
 
          &>*:not(:last-child){
-            @include adaptValue('margin-bottom', 30, 20, 0, 0)
+            @include adaptValue('margin-bottom', 15, 10, 0, 0);
+         }
+         &>*:not(:first-child){
+            @include adaptValue('margin-top', 15, 10, 0, 0);
          }
       }
    }
    // .menu__item
    &__item {
-      @media(hover: hover){
+      @media(min-width: 768px){
          position: relative;
 
-         &:hover{
-            &>.menu__sub-list{
-               visibility: visible;
-               opacity: 1;
-               pointer-events: all;
+         @media(hover: hover){
+            &:hover{
+               &>.menu__sub-list{
+                  visibility: visible;
+                  opacity: 1;
+                  pointer-events: all;
+               }
+               &>.menu__link{
+                 color: $green;
+               }
+
+               & [data-spoiler-span]{
+                  transform: rotate(180deg);
+               }
+            }
+         }
+
+         @media(hover: none){
+            &._open{
+               &>.menu__sub-list{
+                  visibility: visible;
+                  opacity: 1;
+                  pointer-events: all;
+               }
+               &>.menu__link{
+                 color: $green;
+               }
+
+               & [data-spoiler-span]{
+                  transform: rotate(180deg);
+               }
             }
          }
       }
@@ -129,53 +155,93 @@ body{
    // .menu__link
    &__link {
       @include adaptValue('font-size', 20, 18, 0, 0);
-
-      @media(max-width: 767px){
-         @include adaptValue('font-size', 30, 22, 0, 0);
-      }
-
       @include adaptValue('padding-top', 10, 10, 0, 0);
       @include adaptValue('padding-bottom', 10, 10, 0, 0);
 
       color: white;
+
+      @media(min-width: 768px){
+         position: relative;
+         transition: $trans;
+      }
+
+      @media(max-width: 767px){
+         width: 100%;
+         display: flex;
+         @include adaptValue('font-size', 30, 22, 0, 0);
+      }
    }
    // .menu__sub-list
    &__sub-list {
       //display: none;
-      @media(hover: hover){
+
+      @media(min-width: 768px){
          position: absolute;
          @include adaptValue('padding', 10, 5, 0, 0);
          background: white;
-         //font-weight: 500;
          box-shadow: 0 0 10px 0 $black;
          border-radius: 5px;
          color: $purple;
          top: 100%;
          left: 0;
+         min-width: 100%;
          width: 150px;
 
          visibility: hidden;
          opacity: 0;
-         //pointer-events: none;
+         
          transition: $trans;
-
-
 
          &>*:not(:last-child){
             @include adaptValue('margin-bottom', 5, 5, 0, 0);
          }
       }
+
+      @media(max-width: 767px){
+         &>*:not(:last-child){
+            &>a{
+               @include adaptValue('padding-bottom', 10, 10, 0, 0);
+            }
+         }
+         &>*{
+            &>a{
+               @include adaptValue('padding-top', 10, 10, 0, 0);
+            }
+         }
+
+         @include adaptValue('padding-left', 15, 10, 0, 0);
+         @include adaptValue('padding-right', 15, 10, 0, 0);
+      }
    }
    // .menu__sub-item
    &__sub-item {
+      @media(min-width: 768px){
+         @media(hover: hover){
+            &:hover{
+               &>.menu__sub-link{
+                  color: #912105;
+               }
+            }
+         }
+      }
+      @media(max-width: 767px){
+         display: flex;
+      }
    }
    // .menu__sub-link
    &__sub-link {
-      @media(hover: hover){
+      @media(min-width: 768px){
          @include adaptValue('font-size', 16, 14, 0, 0);
          line-height: 1.2;
          cursor: pointer;
          font-weight: 500;
+         transition: $trans;
+      }
+
+      @media(max-width: 767px){
+         width: 100%;
+         color: white;
+         @include adaptValue('font-size', 20, 18, 0, 0);    
       }
    }
    // .menu__burger
