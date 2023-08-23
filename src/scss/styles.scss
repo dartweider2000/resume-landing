@@ -54,9 +54,19 @@ body{
       left: 0;
       width: 100%;
       height: 100%;
-      background: $violet;
+      //background: $violet;
+      background: transparent;
       z-index: 1;
+      transition: $trans;
    }
+
+   ._burger-lock &{
+      &::before{
+         background: $red;
+      }
+   
+   }
+
    // .header__row
    &__row {
       @include adaptValue('padding-top', 20, 10, 0, 0);
@@ -78,7 +88,6 @@ body{
    &__menu {
    }
 }
-
 
 .menu {
    flex: 1 1 auto;
@@ -181,7 +190,7 @@ body{
          background: white;
          box-shadow: 0 0 10px 0 $black;
          border-radius: 5px;
-         color: $purple;
+        // color: black;
          top: 100%;
          left: 0;
          min-width: 100%;
@@ -236,6 +245,7 @@ body{
          cursor: pointer;
          font-weight: 500;
          transition: $trans;
+         color: black;
       }
 
       @media(max-width: 767px){
@@ -251,5 +261,72 @@ body{
 
 .burger {
    background: transparent;
+}
+
+.full-screen {
+   position: relative;
+   min-height: 100vh;
+   min-width: 100vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   // .full-screen__bg
+   &__bg {
+      // min-height: 100vh;
+      // min-width: 100vw;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &::before{
+         content: '';
+         background: rgba(0, 0, 0, 0.7);
+         z-index: 3;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+      }
+
+   }
+   // .full-screen__body
+   &__body {
+      position: relative;
+      z-index: 3;
+      //color: white;
+      max-width: $mw3;
+      text-align: center;
+      padding: 0 10px;
+      // min-height: 100vh;
+      // min-width: 100vw;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // width: 100%;
+      // height: 100%;
+
+      &>*:not(:last-child){
+         @include adaptValue('margin-bottom', 20, 10, 0, 0);
+      }
+   }
+   // .full-screen__title
+   &__title {
+      @include adaptValue('font-size', 50, 30, 0, 0);
+      font-weight: 700;
+      line-height: 1.2;
+      color: white;
+   }
+   // .full-screen__sub-title
+   &__sub-title {
+      @include adaptValue('font-size', 30, 20, 0, 0);
+      font-weight: 400;
+      color: white;
+   }
+   // .full-screen__arrow
+   &__arrow {
+   }
 }
 

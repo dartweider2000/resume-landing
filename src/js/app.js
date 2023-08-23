@@ -22,3 +22,5 @@ burgerMenu(); //Запуск бургера
 //tab(); //Запускаю табы
 //popup(); //Запуская попапы
 //adaptive() //Запускаю динамический адаптив
+
+[...document.links].forEach(link => link.addEventListener('click', e => e.preventDefault()));
