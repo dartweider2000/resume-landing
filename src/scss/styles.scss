@@ -68,6 +68,12 @@ body{
    
    }
 
+   &._change{
+      &::before{
+         background: $red;
+      }
+   }
+
    // .header__row
    &__row {
       @include adaptValue('padding-top', 20, 10, 0, 0);
@@ -84,6 +90,14 @@ body{
       color: white;
       position: relative;
       z-index: 1;
+      transition: $trans;
+
+      @media(hover: hover){
+         cursor: pointer;
+         &:hover{
+            color: #F5C500;
+         }
+      }
    }
    // .header__menu
    &__menu {
@@ -135,7 +149,8 @@ body{
                   pointer-events: all;
                }
                &>.menu__link{
-                 color: $green;
+                 //color: $green;
+                 color: #F5C500;
                }
 
                & [data-spoiler-span]{
@@ -152,7 +167,8 @@ body{
                   pointer-events: all;
                }
                &>.menu__link{
-                 color: $green;
+                 //color: $green;
+                 color: #E24E25;
                }
 
                & [data-spoiler-span]{
@@ -169,6 +185,7 @@ body{
       @include adaptValue('padding-bottom', 10, 10, 0, 0);
 
       color: white;
+      font-weight: 500;
 
       @media(min-width: 768px){
          position: relative;
@@ -195,10 +212,11 @@ body{
          top: 100%;
          left: 0;
          min-width: 100%;
-         width: 150px;
+         width: 200px;
 
          visibility: hidden;
          opacity: 0;
+         pointer-events: none;
          
          transition: $trans;
 
@@ -229,7 +247,7 @@ body{
          @media(hover: hover){
             &:hover{
                &>.menu__sub-link{
-                  color: #912105;
+                  color: #E24E25;
                }
             }
          }
@@ -240,13 +258,15 @@ body{
    }
    // .menu__sub-link
    &__sub-link {
+      font-weight: 600;
+      width: 100%;
+      display: inline-block;
       @media(min-width: 768px){
-         @include adaptValue('font-size', 16, 14, 0, 0);
+         @include adaptValue('font-size', 18, 16, 0, 0);
          line-height: 1.2;
          cursor: pointer;
-         font-weight: 500;
          transition: $trans;
-         color: black;
+         color: #1F2233;
       }
 
       @media(max-width: 767px){
