@@ -372,6 +372,13 @@ body{
       animation-iteration-count: infinite;
       animation-timing-function: linear;
       animation-direction: alternate;
+      transition: $trans;
+
+      @media(hover: hover){
+         &:hover{
+            color: #912105;
+         }
+      }
    }
 }
 
