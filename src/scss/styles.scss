@@ -1014,3 +1014,114 @@ body{
    }
 }
 
+.footer {
+   color: white;
+   // .footer__row
+   &__row {
+      @include adaptValue('padding-top', 30, 10, 0, 0);
+      @include adaptValue('padding-bottom', 30, 10, 0, 0);
+
+      // &>*:not(:last-child){
+      //    @include adaptValue('margin-bottom', 20, 10, 0, 0)
+      // }
+
+      display: grid;
+      grid-template: 1fr / repeat(3, 1fr);
+
+      @media(max-width: 767px){
+         grid-template: repeat(3, 1fr) / 1fr;
+         justify-items: center;
+         text-align: center;
+
+         @include adaptValue('gap', 20, 10, 0, 0);
+      }
+
+    //  align-items: center;
+      //align-content: center;
+      // justify-items: center;
+
+      @include adaptValue('font-size', 18, 16, 0, 0);
+      font-weight: 500;
+      line-height: 1.5;
+   }
+   // .footer__disrected
+   &__disrected {
+      display: grid;
+      align-items: space-between;
+      @include adaptValue('gap', 5, 0, 0, 0);
+   }
+   // .footer__social
+   &__social {
+   }
+   // .footer__contacts
+   &__contacts {
+   }
+   // .footer__phone
+   &__phone {
+   }
+}
+
+.social {
+   display: grid;
+   grid-template: repeat(2, auto) / repeat(3, auto);
+   justify-items: center;
+   @include adaptValue('row-gap', 10, 5, 0, 0);
+   // .social__title
+   &__title {
+      grid-column: span 3;
+   }
+   // .social__block
+   &__block {
+      border: 1px solid white;
+      padding: 7px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &>a{
+         color: inherit;
+      }
+      // .social__block_tg
+      &_tg {
+         justify-self: center;
+         border: 1px solid #28A8EA;
+         color: #28A8EA;
+      }
+      // .social__block_gh
+      &_gh {
+         justify-self: left;
+         border: 1px solid #E24E25;
+         color: #E24E25;
+      }
+      // .social__block_vk
+      &_vk {
+         justify-self: right;
+         border: 1px solid #4477BB;
+         color: #4477BB;
+      }
+   }
+}
+
+.contacts {
+   display: grid;
+   align-items: space-between;
+   @include adaptValue('gap', 5, 0, 0, 0);
+   & a{
+      color: #7a956b;
+   }
+
+   // .contacts__email
+   &__email {
+      //@media(max-width: 767px){
+         text-overflow: ellipsis;
+         overflow: hidden;
+         white-space: nowrap;
+      //}
+   }
+   // .contacts__phone
+   &__phone {
+   }
+}
