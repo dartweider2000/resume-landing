@@ -1,9 +1,11 @@
 import { spoiler } from './modules/spoiler.js';
 import { burgerMenu } from './modules/burger.js';
 import { tab } from './modules/tab.js';
-import { isMobile } from './modules/functions.js';
+import { isMobile, throttle } from './modules/functions.js';
 import { popup } from './modules/popup.js';
 import { adaptive } from './modules/dinamicAdaptive.js';
+import apiService from './weater/api.service.js';
+import classConfig from './weater/class.config.js';
 
 
 const mobileOrDesktop = () => {
@@ -36,9 +38,6 @@ const scrolIsUp = () => {
    return check;
 };
 
-// const scr = scrolIsUp();
-
-// document.addEventListener('scroll', () => console.log(scr()));
 
 const init = () => {
    if(!document.querySelector('[data-header-change]'))
@@ -116,6 +115,7 @@ function initSelect(){
 
          const line = customSelect.firstElementChild;
          line.dataset.value = value;
+         select.value = value;
          line.querySelector('span').textContent = text;
 
          customSelect.classList.toggle('_active');
@@ -136,6 +136,31 @@ function getCustomSelectHTML(selected, bodyHTML){
 function getOptionHTML(option){
    return `<div data-value="${option.value}" class="custorm-select__option">${option.text}</div>`;
 }
+
+const form = document.forms['form'];
+
+async function submitHandler(e){
+   e?.preventDefault();
+
+   const select = form.elements['select'];
+   const value = select.value;
+
+   console.log(value);
+
+   const {name, weather: [{ description }], main: { temp, humidity }, wind: { speed }} = await apiService.getWeather(value);
+
+   classConfig.city.textContent = name;
+   classConfig.description.textContent = `${description[0].toUpperCase()}${description.slice(1)}`;
+   classConfig.humidity.textContent = `${humidity} %`;
+   classConfig.temp.textContent = `${Math.round(temp)} °C`;
+   classConfig.wind.textContent = `${speed} м/с`;
+}
+
+document.addEventListener('DOMContentLoaded', e => {
+   submitHandler();
+});
+
+form.addEventListener('submit', throttle(submitHandler, 1000));
 
 document.addEventListener('click', e => {
    const el = e.target;
