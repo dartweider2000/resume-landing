@@ -7,12 +7,38 @@ import { adaptive } from './modules/dinamicAdaptive.js';
 import apiService from './weater/api.service.js';
 import classConfig from './weater/class.config.js';
 
+const clickHandler = e => {
+   const el = e.target;
+
+   if(document.querySelector('.custorm-select._active') && !el.closest('.custorm-select._active')){
+      document.querySelector('.custorm-select._active').classList.remove('_active');
+   }
+
+   if(el.closest('[data-scroll]')){
+      const link = el.closest('[data-scroll]');
+      const selector = link.dataset.scroll;
+      const header = document.querySelector('.header');
+
+      const top = document.querySelector(selector).offsetTop;
+      const { height: headerHeight } = header.getBoundingClientRect();
+
+      window.scrollTo({
+         'top': top - headerHeight,
+         'left': 0,
+         'behavior': 'smooth'
+      });
+   }
+}
+
+
 
 const mobileOrDesktop = () => {
    if(isMobile.any()){
       document.body.classList.add('_touch');
+      document.addEventListener('touchstart', clickHandler);
    }else{
       document.body.classList.add('_hover');
+      document.addEventListener('click', clickHandler);
    }
 }
 
@@ -25,7 +51,7 @@ burgerMenu(); //Запуск бургера
 //popup(); //Запуская попапы
 //adaptive() //Запускаю динамический адаптив
 
-[...document.links].forEach(link => link.addEventListener('click', e => e.preventDefault()));
+[...document.querySelectorAll('.header a')].forEach(link => link.addEventListener('click', e => e.preventDefault()));
 
 const scrolIsUp = () => {
    let scroll = scrollY;
@@ -61,6 +87,7 @@ const init = () => {
       }
       changeStart = changeDirectionElement.offsetTop;
    };
+   windowScrollHandler();
    window.addEventListener('scroll', windowScrollHandler);
 };
 
@@ -162,10 +189,34 @@ document.addEventListener('DOMContentLoaded', e => {
 
 form.addEventListener('submit', throttle(submitHandler, 1000));
 
-document.addEventListener('click', e => {
-   const el = e.target;
 
-   if(document.querySelector('.custorm-select._active') && !el.closest('.custorm-select._active')){
-      document.querySelector('.custorm-select._active').classList.remove('_active');
-   }
-});
+// const clickHandler = e => {
+//    const el = e.target;
+
+//    if(document.querySelector('.custorm-select._active') && !el.closest('.custorm-select._active')){
+//       document.querySelector('.custorm-select._active').classList.remove('_active');
+//    }
+
+//    console.log('!');
+
+//    if(el.closest('[data-scroll]')){
+//       const link = el.closest('[data-scroll]');
+//       const selector = link.dataset.scroll;
+//       const header = document.querySelector('.header');
+
+//       const top = document.querySelector(selector).offsetTop;
+//       const { height: headerHeight } = header.getBoundingClientRect();
+
+//       console.log('!');
+
+//       window.scrollTo({
+//          'top': top - headerHeight,
+//          'left': 0,
+//          'behavior': 'smooth'
+//       });
+//    }
+// }
+
+// document.addEventListener('touchstart', clickHandler);
+
+// document.addEventListener('click', clickHandler);

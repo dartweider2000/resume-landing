@@ -120,4 +120,20 @@ const burgerMenu = () => {
    listener();
    //Добавляю обработчик события.
    matchMedia.addEventListener('change', listener);
+
+   const clickScrollLinkHandler = e => {
+      const el = e.target;
+
+      if(!el.closest('[data-scroll]'))
+         return;
+
+      closeBurger();
+      closeSpoilers();
+   };
+
+   if(document.body.classList.contains('_touch')){
+      document.addEventListener('touchstart', clickScrollLinkHandler);
+   }else{
+      document.addEventListener('click', clickScrollLinkHandler);
+   }
 }
