@@ -224,7 +224,7 @@ body{
 
          visibility: hidden;
          opacity: 0;
-         //pointer-events: none;
+         pointer-events: none;
     
          transition: $trans;
 
@@ -252,7 +252,7 @@ body{
    // .menu__sub-item
    &__sub-item {
       @media(min-width: 768px){
-         display: flex;
+         //display: flex;
          @media(hover: hover){
             &:hover{
                &>.menu__sub-link{
@@ -269,13 +269,13 @@ body{
    &__sub-link {
       font-weight: 600;
       width: 100%;
+      display: inline-block;
       @media(min-width: 768px){
          @include adaptValue('font-size', 18, 16, 0, 0);
          line-height: 1.2;
          cursor: pointer;
          transition: $trans;
          color: #1F2233;
-         display: block;
       }
 
       @media(max-width: 767px){
