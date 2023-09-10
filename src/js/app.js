@@ -72,23 +72,33 @@ const init = () => {
    const header = document.querySelector('[data-header-change]');
    const headerStartChangeSelector = header.dataset.headerChange;
    const changeDirectionElement = document.querySelector(headerStartChangeSelector);
-   let changeStart = changeDirectionElement.offsetTop;
-   const scroll = scrolIsUp();
-   const windowScrollHandler = () => {
-      const scrollValue = scroll();
-      if(!scrollValue){
-         if(scrollY + header.offsetHeight >= changeStart){
-            header.classList.add('_change');
-         }
-      }else if(scrollValue){
-         if(scrollY + header.offsetHeight < changeStart){
-            header.classList.remove('_change');
-         }
-      }
-      changeStart = changeDirectionElement.offsetTop;
-   };
-   windowScrollHandler();
-   window.addEventListener('scroll', windowScrollHandler);
+   // let changeStart = changeDirectionElement.offsetTop;
+   // const scroll = scrolIsUp();
+   // const windowScrollHandler = () => {
+   //    const scrollValue = scroll();
+   //    if(!scrollValue){
+   //       if(scrollY + header.offsetHeight >= changeStart){
+   //          header.classList.add('_change');
+   //       }
+   //    }else if(scrollValue){
+   //       if(scrollY + header.offsetHeight < changeStart){
+   //          header.classList.remove('_change');
+   //       }
+   //    }
+   //    changeStart = changeDirectionElement.offsetTop;
+   // };
+   // windowScrollHandler();
+   // window.addEventListener('scroll', windowScrollHandler);
+
+   const callback = ([{isIntersecting}]) => !isIntersecting ? header.classList.add('_change') : header.classList.remove('_change');
+
+   const observer = new IntersectionObserver(callback, {
+      'rootMargin': `-${header.offsetHeight}px`,
+      'threshold': '1.0'
+   });
+
+   observer.observe(changeDirectionElement);
+
 };
 
 init();
