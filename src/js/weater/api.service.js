@@ -18,7 +18,7 @@ class ApiService{
          });
 
 
-         console.log(res.data);
+         //console.log(res.data);
 
          return res.data;
       }catch(err){
